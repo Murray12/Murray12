@@ -41,6 +41,8 @@
   	success: function(results) {
 		$scope.visitors = results;
 		for (var i = 0; i < results.length; i++) {
+					alert("visitors: "+ results[i].get("name")  + results[i].get("date") + results[i].get("visits"));
+
 			$scope.friends.push({name:results[i].get("name"),visits:results[i].get("visits")});
 		}
 		alert("visitors: "+ results[0].get("name")  + results[0].get("date") + results[0].get("visits"));
