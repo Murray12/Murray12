@@ -51,12 +51,11 @@
       	
       	var Visitor= Parse.Object.extend("Visitor");
 	var query = new Parse.Query(Visitor);
-	alert($scope.name);
 	query.equalTo("name", $scope.name);
 	query.find({
   		success: function(results) {
   			if (results.length == 0){
-  				alert("empty, creating new visitor");
+  				alert("creating new visitor: " + $scope.name);
   				var visitor = new Visitor();
   				visitor.set("name",$scope.name);
   				visitor.set("date",Date.prototype.getDate());
@@ -64,7 +63,7 @@
   				visitor.save();
   			}
   			else {
-  				alert("name:" + results[0].get("name") + "visits" + results[0].get("visits"));
+  				alert("name: " + results[0].get("name") + " visits: " + results[0].get("visits"));
   			}
   			
     			results[0].increment($scope.text);
