@@ -35,7 +35,7 @@
       $scope.submit = function() {
                 	var visitors = Parse.Object.extend("Visitors");
 			var visitors = new Visitors;
-			visitors.increment("name")
+			visitors.increment("text")
 			gameScore.save(null, {
   			success: function(gameScore) {
 			 // Execute any logic that should take place after the object is saved.
