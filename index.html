@@ -30,16 +30,14 @@
     .controller('ExampleController', ['$scope', function($scope) {
       $scope.list = [];
       $scope.visitors;
-      $scope.showLeaderBoard = true;
       $scope.name;
       $scope.show = function(){
-      	$scope.showLeaderBoard = true;
-	var HashTable = Parse.Object.extend("HashTable");
-	var query = new Parse.Query(HashTable);
+	var Visitor = Parse.Object.extend("Visitor");
+	var query = new Parse.Query(Visitor);
 	query.find({
   	success: function(results) {
 		$scope.visitors = results;
-		alert("visitors: "+ visitors);
+		alert("visitors: "+ results);
   	},
   	error: function(error) {
 		alert("Error: " + error.code + " " + error.message);
@@ -102,7 +100,7 @@
   <input type="submit" id="show" value="Show" />
 </form>
 
-<div ng-controller = "ExampleController" ng-repeat="visitor in $scope. | orderBy: 'visits'">
+<div ng-controller = "ExampleController" ng-repeat="visitor in $scope.visitors | orderBy: 'visits'">
     {{visitor.name}} + {{visitor.visits}}
 </div>
 </div>
