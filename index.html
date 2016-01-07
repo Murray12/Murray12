@@ -81,14 +81,11 @@
 
 <script>
     		
-	var GameScore = Parse.Object.extend("GameScore");
-	var query = new Parse.Query(GameScore);
+	var HashTable = Parse.Object.extend("HashTable");
+	var query = new Parse.Query(HashTable);
 	query.find({
   	success: function(results) {
-    	// Do something with the returned Parse.Object values
-    	for (var i = 0; i < results.length; i++) {
-      		var object = results[i];
-    		}
+    		document.write(results[0]);
   	},
   	error: function(error) {
 		alert("Error: " + error.code + " " + error.message);
