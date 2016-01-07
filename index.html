@@ -79,7 +79,7 @@
   					alert("You signed in less than 12 hours ago, please wait before signing in again");
   				}
   				else{
-  					alert("Welcome Back! You have visited" + results[0].get("visits") + " times!");
+  					alert("Welcome Back! You have visited " + results[0].get("visits") + " times!");
   				results[0].increment("visits");
   				results[0].set("date",Math.floor(Date.now()/60000/60));//hour
   				results[0].save();
