@@ -115,7 +115,7 @@
   
 </form>
 
-<div class="container" ng-controller="ExampleController" ng-show="checked">
+<div class="container" ng-controller="ExampleController" ng-show="showme">
   <table class="table table-hover">
     <tr>
       <th>Name</th>
@@ -131,8 +131,7 @@
 </div>
 
 
-
-  <input class="btn btn-primary" type="submit" id="key" value="Show Leaderboard" ng-model="checked" />
+  <input class="btn btn-primary" type="submit" id="key" value="Show Leaderboard" click="showme=true"/>
 
 
 
