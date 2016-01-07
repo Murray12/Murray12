@@ -13,7 +13,7 @@
     .controller('ExampleController', ['$scope', function($scope) {
       $scope.list = [];
       $scope.text = 'hello';
-      $scope.submit = function() {
+      $scope.signin = function() {
         if ($scope.text) {
           $scope.list.push(this.text);
           $scope.text = '';
@@ -21,18 +21,14 @@
       };
     }]);
 </script>
-<form ng-submit="submit()" ng-controller="ExampleController">
-  Enter text and hit enter:
-  <input type="text" ng-model="text" name="text" />
-  <input type="submit" id="submit" value="Submit" />
-  <pre>list={{list}}</pre>
-</form>
 
 
-<div ng-controller="MyController" >
+
+<div ng-submit="signin()" ng-controller="MyController" >
     <form>
         <input type="text" name="firstName" ng-model="myForm.firstName"> First name <br/>
         <input type="text" name="lastName"  ng-model="myForm.lastName"> Last name <br/>
+        <input type="submit" id="signin" value="Sign In" />
     </form>
 
     <div>
