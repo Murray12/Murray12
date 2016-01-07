@@ -49,33 +49,7 @@
       }
       $scope.show();
       $scope.submit = function() {
-      	
-      	var Visitor= Parse.Object.extend("Visitor");
-	var query = new Parse.Query(Visitor);
-	query.equalTo("name", $scope.name);
-	query.find({
-  		success: function(results) {
-  			if (results.length == 0){
-  				alert("creating new visitor: " + $scope.name);
-  				var visitor = new Visitor();
-  				visitor.set("name",$scope.name);
-  				visitor.set("date",Math.floor(Date.now()/60000/60));//hour
-  				visitor.set("visits",1);
-  				visitor.save();
-  			}
-  			else {
-  				results[0].increment("visits");
-  				results[0].set("date",Math.floor(Date.now()/60000/60));//hour
-  				results[0].save();
-  				alert("name: " + results[0].get("name") + " visits: " + results[0].get("visits") + "last visit was " + (Math.floor(Date.now()/60000/60) - results[0].get("date")) + "hours ago");
-  			}
-  			
-    			
-  		},
-  		error: function(error) {
-			alert("Error: " + error.code + " " + error.message);
-  		}
-	});
+     
 
 	};
     }]);
