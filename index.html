@@ -1,72 +1,30 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+</head>
 
-		<!-- jQuery library -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<body ng-app="myapp">
 
-		<!-- Latest compiled JavaScript -->
-		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-		
-		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-		
-		<script>
-		function validateForm() {
-    			alert("hello world!");
-		}
-		
-		Parse.initialize('lbPrJLH38jokUIjcHFfs2oSU6iEYzPLGrxSpC5YO', 'ThPVIHKZICbSayMVEneWW0FJXs2fbDBFscHJrwQv');
-		BaasCMS.init({
-				baas: 'Parse'
-			});
-		</script>
+<div ng-controller="MyController" >
+    <form>
+        <input type="text" name="firstName" ng-model="myForm.firstName"> First name <br/>
+        <input type="text" name="lastName"  ng-model="myForm.lastName"> Last name <br/>
+    </form>
 
-			
-			
-		
+    <div>
+        {{myForm.firstName}} {{myForm.lastName}}
+    </div>
+</div>
+
 <script>
-  angular.module('submitExample', [])
-    .controller('ExampleController', ['$scope', function($scope) {
-      $scope.list = [];
-      $scope.text = 'hello';
-      $scope.submit = function() {
-        if ($scope.text) {
-          $scope.list.push(this.text);
-          $scope.text = '';
-        }
-      };
-    }]);
+    angular.module("myapp", [])
+            .controller("MyController", function($scope) {
+                $scope.myForm = {};
+                $scope.myForm.firstName = "Jakob";
+                $scope.myForm.lastName  = "Jenkov";
+            } );
 </script>
 
-
-
-
-		
-		
-  </head>
-  <body>
-    Murray 12
-    
-	 	<form class="form-inline">
-  	 	<div class="form-group">
-    			<label for="First Name">Name</label>
-    			<input type="text" class="form-control" id="firstName" placeholder="John">
-		</div>
-  			<div class="form-group">
-			<label for="Last Name">Email</label>
-    			<input type="text" class="form-control" id="lastName" placeholder="Smith">
-  		</div>
-  		<button type="submit" class="btn btn-primary">Sign In</button>
-		</form>
-
-<form ng-submit="submit()" ng-controller="ExampleController">
-  Enter text and hit enter:
-  <input type="text" ng-model="text" name="text" />
-  <input type="submit" id="submit" value="Submit" />
-  <pre>list={{list}}</pre>
-</form>
-  
-  </body>
+</body>
 </html>
