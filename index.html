@@ -49,9 +49,9 @@
       }
       $scope.submit = function() {
       	
-      	
-      	var HashTable = Parse.Object.extend("HashTable");
-	var query = new Parse.Query(HashTable);
+      	var visitor= Parse.Object.extend("Visitor");
+	var query = new Parse.Query(Visitor);
+	query.equalTo("title", "I'm Hungry");
 	query.find({
   		success: function(results) {
     			results[0].increment($scope.text);
@@ -88,6 +88,10 @@
 <div ng-controller="ExampleController">
 	{{$scope.hashTable}}
 	hi
+	
+	<li ng-repeat="friend in hashTable | filter:q as results">
+      			[{{$index + 1}}] {{friend.name}} who is {{friend.age}} years old.
+    	</li>
 	
 </div>
 
