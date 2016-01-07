@@ -31,7 +31,7 @@
       $scope.list = [];
       $scope.hashTable;
       $scope.showLeaderBoard = true;
-      $scope.text = 'hello';
+      $scope.name = 'hello';
       $scope.show = function(){
       	$scope.showLeaderBoard = true;
 	var HashTable = Parse.Object.extend("HashTable");
@@ -51,13 +51,18 @@
       	
       	var Visitor= Parse.Object.extend("Visitor");
 	var query = new Parse.Query(Visitor);
-	query.equalTo("title", "I'm Hungry");
+	query.equalTo("name", $scope.name);
 	query.find({
   		success: function(results) {
   			if (results.length == 0)
-  				alert("empty");
+  				alert("empty, creating new visitor");
+  				var visitor = new Visitor();
+  				visitor.set("name",$scope.name);
+  				visitor.set("date",Date.now());
+  				visitor.set("visits",1);
+  				visitor.save();
   			else
-  				alert(results.length);
+  				alert("name:" + results.name + "visits" + results.visits);
   			
     			results[0].increment($scope.text);
     			results[0].save();
@@ -79,7 +84,7 @@
 
 <form ng-submit="submit()" ng-controller="ExampleController">
   Enter text and hit enter:
-  <input type="text" ng-model="text" name="text" />
+  <input type="text" ng-model="name" name="name" />
   <input type="submit" id="submit" value="Submit" />
 </form>
 
