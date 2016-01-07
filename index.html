@@ -39,7 +39,7 @@
 	query.find({
   	success: function(results) {
 		$scope.hashTable = results[0];
-  		{{results[0]}}
+		alert(hashTable);
   	},
   	error: function(error) {
 		alert("Error: " + error.code + " " + error.message);
