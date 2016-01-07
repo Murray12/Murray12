@@ -58,22 +58,14 @@
   				alert("creating new visitor: " + $scope.name);
   				var visitor = new Visitor();
   				visitor.set("name",$scope.name);
-  				visitor.set("date",Date.now()/60000);
+  				visitor.set("date",Math.floor(Date.now()/3600000));//hour
   				visitor.set("visits",1);
-  				visitor.save(null, {
-  success: function(visitor) {
-    // Execute any logic that should take place after the object is saved.
-    alert('New object created with objectId: ' + visitor.id);
-  },
-  error: function(visitor, error) {
-    // Execute any logic that should take place if the save fails.
-    // error is a Parse.Error with an error code and message.
-    alert('Failed to create new object, with error code: ' + error.message);
-  }
-});
+  				visitor.save();
   			}
   			else {
-  				alert("name: " + results[0].get("name") + " visits: " + results[0].get("visits"));
+  				results[0].increment("visits");
+  				visit.set("date",Math.floor(Date.now()/3600000));//hour
+  				alert("name: " + results[0].get("name") + " visits: " + results[0].get("visits") + "last visit was " + Math.floor(Date.now()/3600000) - results[0].get("date") + "hours ago");
   			}
   			
     			results[0].increment($scope.text);
