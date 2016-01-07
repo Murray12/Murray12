@@ -59,10 +59,9 @@
   				var visitor = new Visitor();
   				visitor.set("name",$scope.name);
   				
-  				var currentDate = new Date();
-				var day = currentDate.getDate();
-				var month = currentDate.getMonth() + 1;
-				var year = currentDate.getFullYear();
+				var day = Date.getDate();
+				var month = Date.getMonth() + 1;
+				var year = Date.getFullYear();
 
 				var today = month+'/'+day+'/'+year;
   				visitor.set("date",today));
@@ -102,7 +101,7 @@
 
 
 <form ng-submit="submit()" ng-controller="ExampleController">
-  Enter text and hit enter: 
+  Enter text and hit enter: 123 
   <input type="text" ng-model="name" name="name" />
   <input type="submit" id="submit" value="Submit" />
 </form>
