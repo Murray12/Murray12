@@ -106,7 +106,7 @@
     <tr ng-repeat="friend in friends | orderBy:'-visits' ">
       <td>{{friend.name}}</td>
       <td>{{friend.visits}}</td>
-      <td>{{friend.date - Math.floor(Date.now()/60000/60)}} </td>
+      <td>{{Math.floor(Date.now()/60000/60) - friend.date }} </td>
     </tr>
   </table>
 </div>
