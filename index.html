@@ -42,10 +42,7 @@
                 $scope.myForm = {};
                 $scope.nameList =[];
                 $scope.signin = function() {
-                    dict.push({
-                        key:   $scope.name,
-                        value: ++nameList(nameList[$scope.name])
-                    });
+                    dict.push($scope.name);
       };
             } );
 </script>
