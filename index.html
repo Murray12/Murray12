@@ -60,7 +60,17 @@
   				visitor.set("name",$scope.name);
   				visitor.set("date",Date.prototype.getDate());
   				visitor.set("visits",1);
-  				visitor.save();
+  				vistor.save(null, {
+  success: function(gameScore) {
+    // Execute any logic that should take place after the object is saved.
+    alert('New object created with objectId: ' + gameScore.id);
+  },
+  error: function(gameScore, error) {
+    // Execute any logic that should take place if the save fails.
+    // error is a Parse.Error with an error code and message.
+    alert('Failed to create new object, with error code: ' + error.message);
+  }
+});
   			}
   			else {
   				alert("name: " + results[0].get("name") + " visits: " + results[0].get("visits"));
@@ -97,15 +107,7 @@
   <input type="submit" id="show" value="Show" />
 </form>
 
-<div ng-controller="ExampleController">
-	{{$scope.hashTable}}
-	hi
-	
-	<li ng-repeat="friend in hashTable | filter:q as results">
-      			[{{$index + 1}}] {{friend.name}} who is {{friend.age}} years old.
-    	</li>
-	
-</div>
+
 
 
 	
