@@ -49,7 +49,7 @@
       }
       $scope.submit = function() {
       	
-      	var visitor= Parse.Object.extend("Visitor");
+      	var Visitor= Parse.Object.extend("Visitor");
 	var query = new Parse.Query(Visitor);
 	query.equalTo("title", "I'm Hungry");
 	query.find({
