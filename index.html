@@ -42,7 +42,7 @@
   	success: function(results) {
 		$scope.visitors = results;
 		for (var i = 0; i < results.length; i++) {
-			$scope.friends[i]={results[i].get("name"),results[i].get("date"),results[i].get("visits")};
+			//$scope.friends[i]={results[i].get("name"),results[i].get("date"),results[i].get("visits")};
 		}
 		alert("visitors: "+ friends);
   	},
