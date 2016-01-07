@@ -32,6 +32,7 @@
       $scope.list = [];
       $scope.visitors;
       $scope.name;
+      $scope.now = Math.floor(Date.now()/60000/60);
       $scope.friends = [];
       $scope.show = function(){
       	alert("showing");
@@ -106,7 +107,7 @@
     <tr ng-repeat="friend in friends | orderBy:'-visits' ">
       <td>{{friend.name}}</td>
       <td>{{friend.visits}}</td>
-      <td>{{Math.floor(Date.now()/60000/60) - friend.date }} </td>
+      <td>{{now - friend.date }} </td>
     </tr>
   </table>
 </div>
