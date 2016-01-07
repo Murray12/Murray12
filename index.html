@@ -85,7 +85,8 @@
 	var query = new Parse.Query(HashTable);
 	query.find({
   	success: function(results) {
-    		document.write(results[0]);
+  		
+  		{{results}}
   	},
   	error: function(error) {
 		alert("Error: " + error.code + " " + error.message);
