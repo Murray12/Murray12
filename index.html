@@ -59,12 +59,9 @@
   				var visitor = new Visitor();
   				visitor.set("name",$scope.name);
   				
-				var day = Date.getDate();
-				var month = Date.getMonth() + 1;
-				var year = Date.getFullYear();
+				
 
-				var today = month+'/'+day+'/'+year;
-  				visitor.set("date",today));
+  				visitor.set("date",Date.now());
   				visitor.set("visits",1);
   				visitor.save(null, {
   success: function(visitor) {
