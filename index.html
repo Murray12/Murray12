@@ -24,40 +24,16 @@
 
 
 <body ng-app="myapp">
-
+	
+	
+	
 <script>
   angular.module('submitExample', [])
     .controller('ExampleController', ['$scope', function($scope) {
       $scope.list = [];
       $scope.text = 'hello';
-      $scope.signin = function() {
-        if ($scope.text) {
-          $scope.list.push(this.text);
-          $scope.text = '';
-        }
-      };
-    }]);
-</script>
-
-
-
-<div ng-submit="signin()" ng-controller="MyController" >
-    <form>
-        <input type="text" name="name" ng-model="name"> First name <br/>
-        <input type="submit" id="signin" value="Sign In" />
-    </form>
-
-    <div>
-        {{nameList}} 
-    </div>
-</div>
-
-<script>
-    angular.module("myapp", [])
-            .controller("MyController", function($scope) {
-                $scope.name;
-                $scope.myForm = {};
-                $scope.signin = function() {
+      $scope.submit = function() {
+        $scope.signin = function() {
                 	var visitors = Parse.Object.extend("Visitors");
 			var visitors = new Visitors;
 			visitors.increment("name")
@@ -73,8 +49,21 @@
 			 }
 			});
       };
-            } );
+    }]);
 </script>
+<form ng-submit="submit()" ng-controller="ExampleController">
+  Enter text and hit enter:
+  <input type="text" ng-model="text" name="text" />
+  <input type="submit" id="submit" value="Submit" />
+  <pre>list={{list}}</pre>
+</form>
+
+
+
+
+	
+
+
 
 </body>
 </html>
