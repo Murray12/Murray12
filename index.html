@@ -54,6 +54,9 @@
 	query.equalTo("title", "I'm Hungry");
 	query.find({
   		success: function(results) {
+  			if (results.length == 0)
+  				alert("empty");
+  			
     			results[0].increment($scope.text);
     			results[0].save();
   		},
