@@ -52,11 +52,9 @@
       	var HashTable = Parse.Object.extend("HashTable");
       	
     	
-      	
-	var GameScore = Parse.Object.extend("GameScore");
-	var gameScore = new GameScore();
-	gameScore.increment($scope.text);
-	gameScore.save(null, {
+     	var hashTable = new HashTable();
+	hashTable.increment($scope.text);
+	hashTable.save(null, {
 	 success: function(gameScore) {
 	 // Execute any logic that should take place after the object is saved.
 	 alert('New object created with objectId: ' + gameScore.id);
