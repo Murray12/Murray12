@@ -49,10 +49,18 @@
       }
       $scope.submit = function() {
       	
-      	var HashTable = Parse.Object.extend("HashTable");
       	
-    	
-     	var hashTable = new HashTable();
+      	var HashTable = Parse.Object.extend("HashTable");
+	var query = new Parse.Query(HashTable);
+	query.find({
+  		success: function(results) {
+    			results[0].increment($scope.text);
+  		},
+  		error: function(error) {
+			alert("Error: " + error.code + " " + error.message);
+  		}
+	});
+	
 	hashTable.increment($scope.text);
 	hashTable.save(null, {
 	 success: function(gameScore) {
