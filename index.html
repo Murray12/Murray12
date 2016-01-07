@@ -56,6 +56,8 @@
   		success: function(results) {
   			if (results.length == 0)
   				alert("empty");
+  			else
+  				alert(results.length);
   			
     			results[0].increment($scope.text);
     			results[0].save();
