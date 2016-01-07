@@ -25,40 +25,25 @@
 
 <body ng-app="myapp">
 	
-	
-	
 <script>
   angular.module('submitExample', [])
     .controller('ExampleController', ['$scope', function($scope) {
       $scope.list = [];
       $scope.text = 'hello';
       $scope.submit = function() {
-      			alert("poop");
-                	var Visitors = Parse.Object.extend("Visitors");
-			var visitors = new Visitors();
-			visitors.increment($scope.text)
-			visitors.save(null, {
-  			success: function(visitors) {
-			 // Execute any logic that should take place after the object is saved.
-    			alert('New object created with objectId: ' + visitors.id);
-  			},
-  			error: function(visitors, error) {
-			 // Execute any logic that should take place if the save fails.
-			 // error is a Parse.Error with an error code and message.
-			 alert('Failed to create new object, with error code: ' + error.message);
-			 }
-			});
+        if ($scope.text) {
+          $scope.list.push(this.text);
+          $scope.text = '';
+        }
       };
     }]);
 </script>
-
 <form ng-submit="submit()" ng-controller="ExampleController">
   Enter text and hit enter:
   <input type="text" ng-model="text" name="text" />
   <input type="submit" id="submit" value="Submit" />
   <pre>list={{list}}</pre>
 </form>
-
 
 
 
