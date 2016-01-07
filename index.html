@@ -31,20 +31,16 @@
       $scope.list = [];
       $scope.text = 'hello';
       $scope.show = function(){
-      	var GameScore = Parse.Object.extend("GameScore");
-	var query = new Parse.Query(GameScore);
+	var HashTable = Parse.Object.extend("HashTable");
+	var query = new Parse.Query(HashTable);
 	query.find({
-  		success: function(results) {
-    			alert("Successfully retrieved " + results.length + " scores.");
-    			// Do something with the returned Parse.Object values
-    				for (var i = 0; i < results.length; i++) {
-      			var object = results[i];
-      			alert(object.id + ' - ' + object.get('playerName'));
-    			}
-  		},
-  		error: function(error) {
-			alert("Error: " + error.code + " " + error.message);
-  		}
+  	success: function(results) {
+
+  		{{results[0]}}
+  	},
+  	error: function(error) {
+		alert("Error: " + error.code + " " + error.message);
+	}
 	});
       }
       $scope.submit = function() {
@@ -78,21 +74,10 @@
   <input type="submit" id="submit" value="Submit" />
 </form>
 
-<script>
-    		
-	var HashTable = Parse.Object.extend("HashTable");
-	var query = new Parse.Query(HashTable);
-	query.find({
-  	success: function(results) {
-  		
-  		{{results[0]}}
-  	},
-  	error: function(error) {
-		alert("Error: " + error.code + " " + error.message);
-	}
-	});
-	
-</script>
+<form ng-submit="show()" ng-controller="ExampleController">
+  Show Leaderboard:
+  <input type="submit" id="submit" value="Submit" />
+</form>
 
 
 
