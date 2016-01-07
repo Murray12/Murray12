@@ -60,12 +60,12 @@
   				visitor.set("name",$scope.name);
   				visitor.set("date",Date.prototype.getDate());
   				visitor.set("visits",1);
-  				vistor.save(null, {
-  success: function(gameScore) {
+  				visitor.save(null, {
+  success: function(visitor) {
     // Execute any logic that should take place after the object is saved.
-    alert('New object created with objectId: ' + gameScore.id);
+    alert('New object created with objectId: ' + visitor.id);
   },
-  error: function(gameScore, error) {
+  error: function(visitor, error) {
     // Execute any logic that should take place if the save fails.
     // error is a Parse.Error with an error code and message.
     alert('Failed to create new object, with error code: ' + error.message);
