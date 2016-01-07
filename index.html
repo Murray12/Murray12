@@ -75,8 +75,13 @@
   			}
   			else {
   				results[0].increment("visits");
+  				if($scope.now - results[0].get("date") > 12){
+  					alert("Signed in less than 12 hours ago, please wait before signing in again");
+  				}
+  				else{
   				results[0].set("date",Math.floor(Date.now()/60000/60));//hour
   				results[0].save();
+  				}
   			}
   			
     			
