@@ -54,15 +54,17 @@
 	query.equalTo("name", $scope.name);
 	query.find({
   		success: function(results) {
-  			if (results.length == 0)
+  			if (results.length == 0){
   				alert("empty, creating new visitor");
   				var visitor = new Visitor();
   				visitor.set("name",$scope.name);
   				visitor.set("date",Date.now());
   				visitor.set("visits",1);
   				visitor.save();
-  			else
+  			}
+  			else {
   				alert("name:" + results.name + "visits" + results.visits);
+  			}
   			
     			results[0].increment($scope.text);
     			results[0].save();
