@@ -112,11 +112,17 @@
 <div class="jumbotron">
   <h2>Sign in into Murray 12! </h2>
 </div>	
- <p>Please Sign In:</p>  	
-  <input class="col-xs-4" class="form-control" class="input-group input-group-lg" type="text"  placeholder="Example: John Smith" ng-model="name" name="name" />
-  <input class="btn btn-primary btn-lg" type="submit" id="submit" value="Submit" ng-click="submit()"/>
-  <input class="btn btn-primary btn-lg" type="submit" id="key" value="Show Leaderboard" ng-click="showme=true" ng-hide = "showme"/>
-  <input class="btn btn-primary btn-lg" type="submit" id="remove" value="Remove Leaderboard" ng-click="showme=false"ng-show = "showme"/>
+ <p>Please Sign In:</p>  
+ 
+ <div class="row">
+  <div class="form-group col-xs-5 col-lg-1">
+    <label for="code">Name</label>
+      <input  class="form-control"  type="text"  placeholder="Example: John Smith" ng-model="name" name="name" />
+  </div>
+    </div>
+  <input class="btn btn-primary btn-md" type="submit" id="submit" value="Submit" ng-click="submit()"/>
+  <input class="btn btn-primary btn-md" type="submit" id="key" value="Show Leaderboard" ng-click="showme=true" ng-hide = "showme"/>
+  <input class="btn btn-primary btn-md" type="submit" id="remove" value="Remove Leaderboard" ng-click="showme=false"ng-show = "showme"/>
 
  
   <div class="container" ng-controller="ExampleController" ng-show="showme">
