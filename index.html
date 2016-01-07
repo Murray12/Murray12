@@ -38,6 +38,7 @@
 	var query = new Parse.Query(HashTable);
 	query.find({
   	success: function(results) {
+  		alert("hello");
 		$scope.hashTable = results[0];
 		alert(hashTable);
   	},
