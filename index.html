@@ -38,6 +38,9 @@
       $scope.name;
       $scope.now = Math.floor(Date.now()/60000/60);
       $scope.friends = [];
+      $scope.key = function(){
+      	$scope.leader = true;
+      }
       $scope.show = function(){
 	var Visitor = Parse.Object.extend("Visitor");
 	var query = new Parse.Query(Visitor);
@@ -128,7 +131,9 @@
 </div>
 
 
-
+<form ng-submit="key()" ng-controller="ExampleController">
+  <input class="btn btn-primary" type="submit" id="key" value="Show Leaderboard" />
+</form>
 
 	
 
