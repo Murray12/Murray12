@@ -66,7 +66,7 @@
 	query.find({
   		success: function(results) {
   			if (results.length == 0){
-  				alert("Welcome" + $scope.name + ". You are a new visitor!");
+  				alert("Welcome " + $scope.name + ". You are a new visitor!");
   				var visitor = new Visitor();
   				visitor.set("name",$scope.name);
   				visitor.set("date",Math.floor(Date.now()/60000/60));//hour
@@ -76,7 +76,7 @@
   			else {
   				
   				if(($scope.now - results[0].get("date")) < 12){
-  					alert("Signed in less than 12 hours ago, please wait before signing in again");
+  					alert("You signed in less than 12 hours ago, please wait before signing in again");
   				}
   				else{
   					alert("Welcome Back! You have visited" + results[0].get("visits") + " times!");
