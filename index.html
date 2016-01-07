@@ -32,6 +32,7 @@
       $scope.visitors;
       $scope.name;
       $scope.show = function(){
+      	alert("showing");
 	var Visitor = Parse.Object.extend("Visitor");
 	var query = new Parse.Query(Visitor);
 	query.find({
@@ -100,9 +101,18 @@
   <input type="submit" id="show" value="Show" />
 </form>
 
-<div ng-controller = "ExampleController" ng-repeat="visitor in $scope.visitors | orderBy: 'visits'">
-    {{visitor.name}} + {{visitor.visits}}
-</div>
+<div ng-controller="ExampleController">
+  show();
+  <table class="friend">
+    <tr>
+      <th>Name</th>
+      <th>Phone Number</th>
+    </tr>
+    <tr ng-repeat="friend in $scope.visitors | orderBy:'visits'">
+      <td>{{friend.name}}</td>
+      <td>{{friend.visits}}</td>
+    </tr>
+  </table>
 </div>
 
 
