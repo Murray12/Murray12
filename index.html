@@ -29,13 +29,16 @@
   angular.module('submitExample', [])
     .controller('ExampleController', ['$scope', function($scope) {
       $scope.list = [];
+      $scope.hashTable;
+      $scope.showLeaderBoard = false;
       $scope.text = 'hello';
       $scope.show = function(){
+      	$scope.showLeaderBoard = true;
 	var HashTable = Parse.Object.extend("HashTable");
 	var query = new Parse.Query(HashTable);
 	query.find({
   	success: function(results) {
-
+		$scope.hashTable = results[0];
   		{{results[0]}}
   	},
   	error: function(error) {
@@ -74,11 +77,18 @@
   <input type="submit" id="submit" value="Submit" />
 </form>
 
+
+
 <form ng-submit="show()" ng-controller="ExampleController">
   Show Leaderboard:
   <input type="submit" id="show" value="Show" />
 </form>
 
+<div ng-show="showLeaderBoard">
+	{{$scope.hashTable}}
+	
+	
+</div>
 
 
 	
