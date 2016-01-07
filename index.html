@@ -58,7 +58,7 @@
   				alert("creating new visitor: " + $scope.name);
   				var visitor = new Visitor();
   				visitor.set("name",$scope.name);
-  				visitor.set("date",Date.prototype.getDate());
+  			
   				visitor.set("visits",1);
   				visitor.save(null, {
   success: function(visitor) {
