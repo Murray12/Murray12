@@ -33,6 +33,7 @@
       $scope.list = [];
       $scope.visitors;
       $scope.name;
+      $scope.friends =[];
       $scope.show = function(){
       	alert("showing");
 	var Visitor = Parse.Object.extend("Visitor");
@@ -40,7 +41,10 @@
 	query.find({
   	success: function(results) {
 		$scope.visitors = results;
-		alert("visitors: "+ results);
+		for (var i = 0; i < results.length; i++) {
+			friends.push({results[i].get("name"),results.get("date",results.get("visits")});
+		}
+		alert("visitors: "+ friends);
   	},
   	error: function(error) {
 		alert("Error: " + error.code + " " + error.message);
@@ -97,7 +101,7 @@
       <th>Name</th>
       <th>Visits</th>
     </tr>
-    <tr ng-repeat="friend in visitors | orderBy:'visits'" ">
+    <tr ng-repeat="friend in friends | orderBy:'visits'" ">
       <td>{{friend.name}}</td>
       <td>{{friend.get("visits")}}</td>
     </tr>
