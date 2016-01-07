@@ -102,10 +102,11 @@
 </form>
 
 <div ng-controller="ExampleController">
+	$scope.show();
   <table class="friend">
     <tr>
       <th>Name</th>
-      <th>Phone Number</th>
+      <th>Visits</th>
     </tr>
     <tr ng-repeat="friend in $scope.visitors | orderBy:'visits'">
       <td>{{friend.name}}</td>
