@@ -12,7 +12,15 @@
 		
 		
 		
-		<script>		
+		<script>
+		function validateForm() {
+    			var x = document.forms["myForm"]["fname"].value;
+    			if (x == null || x == "") {
+        			alert("Name must be filled out");
+        		return false;
+			 }
+		}
+		
 		Parse.initialize('lbPrJLH38jokUIjcHFfs2oSU6iEYzPLGrxSpC5YO', 'ThPVIHKZICbSayMVEneWW0FJXs2fbDBFscHJrwQv');
 		BaasCMS.init({
 				baas: 'Parse'
