@@ -38,18 +38,15 @@
       $scope.now = Math.floor(Date.now()/60000/60);
       $scope.friends = [];
       $scope.show = function(){
-      	alert("showing");
 	var Visitor = Parse.Object.extend("Visitor");
 	var query = new Parse.Query(Visitor);
 	query.find({
   	success: function(results) {
 		$scope.visitors = results;
-		console.log(results.length);
 		for (var i = 0; i < results.length; i++) {
 
 			$scope.friends.push({name:results[i].get("name"),date:results[i].get("date"),visits:results[i].get("visits")});
 		}
-		alert("visitors: "+ results[0].get("name")  + results[0].get("date") + results[0].get("visits"));
   	},
   	error: function(error) {
 		alert("Error: " + error.code + " " + error.message);
