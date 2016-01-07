@@ -102,8 +102,8 @@
       <th>Name</th>
       <th>Visits</th>
     </tr>
-    <tr ng-repeat="friend in friends | orderBy:'visits' ">
-      <td>{{friend.get("name")}}</td>
+    <tr ng-repeat="friend in friends | orderBy:'-visits' ">
+      <td>{{friend.name}}</td>
       <td>{{friend.visits}}</td>
     </tr>
   </table>
