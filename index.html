@@ -42,9 +42,8 @@
 		$scope.visitors = results;
 		console.log(results.length);
 		for (var i = 0; i < results.length; i++) {
-					alert("visitors: "+ results[i].get("name")  +  results[i].get("visits"));
 
-			$scope.friends.push({name:results[i].get("name"),visits:results[i].get("visits")});
+			$scope.friends.push({name:results[i].get("name"),date:results[i].get("date"),visits:results[i].get("visits")});
 		}
 		alert("visitors: "+ results[0].get("name")  + results[0].get("date") + results[0].get("visits"));
   	},
@@ -103,7 +102,7 @@
       <th>Name</th>
       <th>Visits</th>
     </tr>
-    <tr ng-repeat="friend in visitors | orderBy:'visits' ">
+    <tr ng-repeat="friend in friends | orderBy:'visits' ">
       <td>{{friend.get("name")}}</td>
       <td>{{friend.visits}}</td>
     </tr>
