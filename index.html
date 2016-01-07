@@ -31,7 +31,7 @@
       $scope.list = [];
       $scope.hashTable;
       $scope.showLeaderBoard = true;
-      $scope.name = 'hello';
+      $scope.name;
       $scope.show = function(){
       	$scope.showLeaderBoard = true;
 	var HashTable = Parse.Object.extend("HashTable");
@@ -51,6 +51,7 @@
       	
       	var Visitor= Parse.Object.extend("Visitor");
 	var query = new Parse.Query(Visitor);
+	alert($scope.name);
 	query.equalTo("name", $scope.name);
 	query.find({
   		success: function(results) {
