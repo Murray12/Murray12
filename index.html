@@ -108,6 +108,8 @@
 
 
 
+
+
 <div ng-controller="ExampleController">
 <div class="jumbotron">
   <h2>Sign in into Murray 12! </h2>
@@ -117,7 +119,9 @@
   <div class="form-group col-xs-5 col-lg-1">
     <label for="code">Please Sign In</label>
       <input  class="form-control"  type="text"  placeholder="Example: John Smith" ng-model="name" name="name" />
-      <input class="btn btn-primary btn-md" type="submit" id="submit" value="Submit" ng-click="submit()"/>
+      <span class="input-group-btn">
+	 <input class="btn btn-primary btn-md" type="submit" id="submit" value="Submit" ng-click="submit()"/>
+   </span>
 
   </div>
   </div>
