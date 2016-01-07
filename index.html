@@ -121,18 +121,15 @@
       <input  class="form-control"  type="text"  placeholder="Example: John Smith" ng-model="name" name="name" />
       <span class="input-group-btn">
 	 <input class="btn btn-primary btn-md" type="submit" id="submit" value="Submit" ng-click="submit()"/>
+	  <input class="btn btn-primary btn-md" type="submit" id="key" value="Show Leaderboard" ng-click="showme=true" ng-hide = "showme"/>
+    <input class="btn btn-primary btn-md" type="submit" id="remove" value="Remove Leaderboard" ng-click="showme=false"ng-show = "showme"/>
+
    </span>
 
   </div>
   </div>
 
-  <div class="row">
-  <div class="form-group col-xs-5">
-    <input class="btn btn-primary btn-md" type="submit" id="key" value="Show Leaderboard" ng-click="showme=true" ng-hide = "showme"/>
-    <input class="btn btn-primary btn-md" type="submit" id="remove" value="Remove Leaderboard" ng-click="showme=false"ng-show = "showme"/>
-
-  </div>
-  </div>
+  
 
  
   <div class="container" ng-controller="ExampleController" ng-show="showme">
