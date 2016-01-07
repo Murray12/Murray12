@@ -31,10 +31,20 @@
       $scope.list = [];
       $scope.text = 'hello';
       $scope.submit = function() {
-        if ($scope.text) {
-          $scope.list.push(this.text);
-          $scope.text = '';
-        }
+	var GameScore = Parse.Object.extend("GameScore");
+	var gameScore = new GameScore();
+	gameScore.increment($scope.text);
+gameScore.save(null, {
+  success: function(gameScore) {
+    // Execute any logic that should take place after the object is saved.
+    alert('New object created with objectId: ' + gameScore.id);
+  },
+  error: function(gameScore, error) {
+    // Execute any logic that should take place if the save fails.
+    // error is a Parse.Error with an error code and message.
+    alert('Failed to create new object, with error code: ' + error.message);
+  }
+});
       };
     }]);
 </script>
