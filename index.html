@@ -73,7 +73,6 @@
   				results[0].increment("visits");
   				results[0].set("date",Math.floor(Date.now()/60000/60));//hour
   				results[0].save();
-  				alert("name: " + results[0].get("name") + " visits: " + results[0].get("visits") + "last visit was " + (Math.floor(Date.now()/60000/60) - results[0].get("date")) + "hours ago");
   			}
   			
     			
