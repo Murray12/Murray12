@@ -76,7 +76,7 @@
 			alert("Error: " + error.code + " " + error.message);
   		}
 	});
-	$scope.show();
+	//$scope.show();
 
 	};
     }]);
@@ -105,8 +105,8 @@
       <th>Visits</th>
     </tr>
     <tr ng-repeat="friend in visitors">
-      <td>{{friend}}</td>
-      <td>{{friend}}</td>
+      <td>{{friend.get("name")}}</td>
+      <td>{{friend.get("visits")}}</td>
     </tr>
   </table>
 </div>
