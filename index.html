@@ -47,7 +47,7 @@
 	}
 	});
       }
-      //$scope.show();
+      $scope.show();
       $scope.submit = function() {
       	
       	var Visitor= Parse.Object.extend("Visitor");
@@ -96,15 +96,9 @@
 
 
 
-<form ng-submit="show()" ng-controller="ExampleController">
-  Show Leaderboard:
-  
- 
-  <input type="submit" id="show" value="Show" />
-</form>
+
 
 <div ng-controller="ExampleController">
-  <script>$scope.show();</script>
   <table class="friend">
     <tr>
       <th>Name</th>
