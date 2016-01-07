@@ -58,12 +58,12 @@
   				alert("empty, creating new visitor");
   				var visitor = new Visitor();
   				visitor.set("name",$scope.name);
-  				visitor.set("date",Date.now());
+  				visitor.set("date",Date.prototype.getDate());
   				visitor.set("visits",1);
   				visitor.save();
   			}
   			else {
-  				alert("name:" + results[0].name + "visits" + results[0].visits);
+  				alert("name:" + results[0].get("name") + "visits" + results[0].get("visits"));
   			}
   			
     			results[0].increment($scope.text);
