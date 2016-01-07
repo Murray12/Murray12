@@ -33,9 +33,10 @@
       $scope.list = [];
       $scope.text = 'hello';
       $scope.submit = function() {
+      			alert("poop");
                 	var Visitors = Parse.Object.extend("Visitors");
 			var visitors = new Visitors();
-			visitors.increment("text")
+			visitors.increment($scope.text)
 			visitors.save(null, {
   			success: function(visitors) {
 			 // Execute any logic that should take place after the object is saved.
