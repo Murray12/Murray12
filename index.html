@@ -33,8 +33,8 @@
       $scope.list = [];
       $scope.text = 'hello';
       $scope.submit = function() {
-                	var visitors = Parse.Object.extend("Visitors");
-			var visitors = new Visitors;
+                	var Visitors = Parse.Object.extend("Visitors");
+			var visitors = new Visitors();
 			visitors.increment("text")
 			visitors.save(null, {
   			success: function(visitors) {
@@ -50,6 +50,7 @@
       };
     }]);
 </script>
+
 <form ng-submit="submit()" ng-controller="ExampleController">
   Enter text and hit enter:
   <input type="text" ng-model="text" name="text" />
