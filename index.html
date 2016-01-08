@@ -117,25 +117,22 @@
   <h2>Sign in into Murray 12! </h2>
 </div>	
 
- <div class="col centered">
-  <div class="form-group  col-xs-5">
+  <div class="form-control">
     <label for="code">Please Sign In</label>
       <input  class="form-control"  type="text"  placeholder="Example: John Smith" ng-model="name" name="name" />
 	
 
 
-  </div>
-  <div class="form-group col-xs-5">
-  	    <input class="btn btn-primary btn-md" type="submit" id="remove" value="Remove Leaderboard" ng-click="showme=false"ng-show = "showme"/>
+  	<input class="btn btn-primary btn-md" type="submit" id="remove" value="Remove Leaderboard" ng-click="showme=false"ng-show = "showme"/>
+ 	<input class="btn btn-primary btn-md" type="submit" id="submit" value="Submit" ng-click="submit()"/>
+	 <input class="btn btn-primary btn-md" type="submit" id="key" value="Show Leaderboard" ng-click="showme=true" ng-hide = "showme"/>
 
-  </div>
+
   </div>
   
   
 
-   <input class="btn btn-primary btn-md" type="submit" id="submit" value="Submit" ng-click="submit()"/>
-	  <input class="btn btn-primary btn-md" type="submit" id="key" value="Show Leaderboard" ng-click="showme=true" ng-hide = "showme"/>
-
+   	 
  
   <div class="container" ng-controller="ExampleController" ng-show="showme">
   <table class="table table-hover">
