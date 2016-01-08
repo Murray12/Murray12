@@ -123,9 +123,9 @@
 <div class="container">
 	<h3>Sign in Here:</h3>
 		
-      <input class="form-control"  type="text"  placeholder="Example: John Smith" ng-model="name" required name="name" />
+      <input class="form-control"  type="text"  placeholder="Example: John Smith" ng-model="name" name="name" />
       <p></p>
-      <input class="btn btn-primary btn-block" type="submit" id="submit" value="Submit" ng-click="submit()" ng-disabled="name.$invalid"/>
+      <input class="btn btn-primary btn-block" type="submit" id="submit" value="Submit" ng-click="submit()" ng-required="name."/>
       
 
 	<input class="btn btn-primary btn-block form-control" type="submit" id="remove" value="Remove Leaderboard" ng-click="showme=false"ng-show = "showme"/>
