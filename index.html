@@ -1,164 +1,194 @@
+
 <!DOCTYPE html>
-<html ng-app="submitExample">
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-
-		<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.string/2.3.3/underscore.string.min.js"></script>
-		<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/path.js/0.8.4/path.min.js"></script>		
-		<script src="//www.parsecdn.com/js/parse-1.2.19.min.js"></script>		
-		<script src="//cdn.rawgit.com/Artod/baascms/master/dist/baascms-1.0.0.min.js"></script>
-		<script src="//cdn.rawgit.com/Artod/baascms/master/dist/baascms-adapter-parse-1.0.0.min.js"></script>
-    		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
-    		
-    		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
-		<!-- jQuery library -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-		<!-- Latest compiled JavaScript -->
-		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    		
-    		<script>
-			Parse.initialize('lbPrJLH38jokUIjcHFfs2oSU6iEYzPLGrxSpC5YO', 'ThPVIHKZICbSayMVEneWW0FJXs2fbDBFscHJrwQv');
-			
-			BaasCMS.init({
-				baas: 'Parse'
-			});
-			
-			
-		</script>
-		<script>
-  angular.module('submitExample', [])
-    .controller('ExampleController', ['$scope', function($scope) {
-      $scope.list = [];
-      $scope.visitors;
-      $scope.leader=false;
-      $scope.name;
-      $scope.now = Math.floor(Date.now()/60000/60);
-      $scope.friends = [];
-      $scope.key = function(){
-      	$scope.leader = true;
-      }
-      $scope.show = function(){
-	var Visitor = Parse.Object.extend("Visitor");
-	var query = new Parse.Query(Visitor);
-	query.find({
-  	success: function(results) {
-		$scope.visitors = results;
-		for (var i = 0; i < results.length; i++) {
-
-			$scope.friends.push({name:results[i].get("name"),date:results[i].get("date"),visits:results[i].get("visits")});
-		}
-  	},
-  	error: function(error) {
-		alert("Error: " + error.code + " " + error.message);
-	}
-	});
-      }
-      $scope.show();
-      $scope.submit = function() {
-      	
-      	var Visitor= Parse.Object.extend("Visitor");
-	var query = new Parse.Query(Visitor);
-	query.equalTo("name", $scope.name);
-	query.find({
-  		success: function(results) {
-  			if (results.length == 0){
-  				alert("Welcome " + $scope.name + ". You are a new visitor!");
-  				var visitor = new Visitor();
-  				visitor.set("name",$scope.name);
-  				visitor.set("date",Math.floor(Date.now()/60000/60));//hour
-  				visitor.set("visits",1);
-  				visitor.save();
-  			}
-  			else {
-  				
-  				if(($scope.now - results[0].get("date")) < 12){
-  					alert("You signed in less than 12 hours ago, please wait before signing in again");
-  				}
-  				else{
-  					alert("Welcome Back! You have visited " + results[0].get("visits") + " times!");
-  				results[0].increment("visits");
-  				results[0].set("date",Math.floor(Date.now()/60000/60));//hour
-  				results[0].save();
-  				}
-  			}
-  			
-    			
-  		},
-  		error: function(error) {
-			alert("Error: " + error.code + " " + error.message);
-  		}
-	});
-
-	};
-    }]);
+<html>
+  <head>
+    <!-- Load JQuery and JQuery-UI -->
+    <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
     
-</script>
-</head>
+    <!-- Load Processing.js -->
+    <script language="javascript" src="js/processing.js"></script>
+    <script language="javascript" src="js/init.js"></script>
 
+    <!-- Load DSP.js -->
+    <script src="../dsp.js"></script>
 
-
-<body >
-	
-
-
-
-
-
-
-
-<div ng-controller="ExampleController">
-
-<div class="container">
-<div class="jumbotron">
-  <h1 class="text-center"> Murray 12 </h2>
-</div>	
-</div>
-
-<div class="container">
-	<h3>Sign in Here:</h3>
-		
-      <input class="form-control"  type="text"  placeholder="Example: John Smith" ng-model="name" name="name" />
-      <p></p>
-      <input class="btn btn-primary btn-block" type="submit" id="submit" value="Submit" ng-click="submit()" ng-disabled="!name"/>
+    <style type="text/css">
+      body, * {
+        font-family: Arial, sans-serif;
+      }
+      .control {
+        padding: 5px;
+        border: 1px outset #CCC;
+        background-color: #EEE;
+        float: left;
+        margin-right: 5px;
+      }
+      .control table td {
+        padding: 10px;
+        width: 20px;
+        color: #999;
+        font-size: 12px;
+      }
+      .control h3 {
+        margin: 0;
+        padding:0;
+        font-size: 12px;
+        margin-bottom: 10px;
+      }
+      .control #debug {
+        border: 1px inset #ccc;
+        background-color: #FFF;
+        font-size: 12px;
+        width: 300px;
+        padding: 10px;
+      }
+      .slider {
+        margin-bottom: 16px;
+        width: 8px;
+      }
       
+      .ui-slider .ui-slider-handle {
+        width: 8px;
+        margin-left: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      // Setup shared variables
+      var sampleRate = 44100;
+      var frameSize = 4096;
+      
+      var signal = new Float32Array(frameSize/2);
+      var lp12;
+      var buffer = [];
+      // Setup experimental audio out
+      var output = new Audio();
+      
+      if ( typeof output.mozSetup === 'function' ) {
+        output.mozSetup(1, sampleRate);
+      }
+      var changeFilter = function() {
+        lp12.set($('#cutoff').slider('option', 'value'), $('#res').slider('option', 'value'));
+      }
+      function loadedMetaData(event) {
+        var audio = document.getElementById('input');
+        audio.mozFrameBufferLength = frameSize;
+        audio.addEventListener("MozAudioAvailable", audioAvailable, false);
+      }
+      function audioAvailable(event) {
+        signal = DSP.getChannel(DSP.MIX, event.frameBuffer);
+        lp12.process(signal);
+        output.mozWriteAudio(signal);
+      }
+    </script>
+    
+    <script type="application/processing" target="#signal">
+      Knob cut;
+      Knob res;
+      void setup() {
+        size(512, 200);
+        cut = new Knob("", 60, 6000, 2500, 70, 20, 50, 50);        
+        res = new Knob("", 1, 20, 7, 0.3, 20, 100, 50);        
+        lp12 = new IIRFilter(DSP.LOWPASS, 22050, 0, sampleRate);
+        // mute the input
+        document.getElementById('input').muted = true;
+        stroke(255, 0, 0);
+      }
+      
+      void draw() {
+        background(255);
+        lp12.set(cut.value, res.value);
+        for (int i = 0; i < width; i+=2) {
+          line(i, height/2 - signal[4*i]/2 * 200, i, height/2 + signal[4*i]/2 * 200);
+        }
+        fill(255, 0, 0);
+        text("F", 30, 30);
+        text("Q", 75, 30);
+        ellipse(52, 52, 40, 40);
+        ellipse(102, 52, 40, 40);
+        fill(255);
+        cut.draw();
+        res.draw();
+      }
+      class Knob {
+        float radius;
+        float x;
+        float y;
+        boolean active;
+        float mouseYInit;
+        float value;
+        float min;
+        float max;
+        float step;
+        float percent;
+        float angle;
+        String label;
+        Knob(label, min, max, value, step, radius, x, y) {
+          this.radius = radius;
+          this.x = x;
+          this.y = y;
+          this.active = false;
+          this.value = value;
+          this.min = min;
+          this.max = max;
+          this.step = step;
+          this.label = label;
+        }
+        void draw() {
+          textSize(12);
+          ellipseMode(CENTER);
+          if (mousePressed) {
+            if (this.isOver() && !this.active && !Knob.active) {
+              this.active = true;
+              this.mouseYInit = mouseY;
+              Knob.active = true;
+            } else if (this.active) {
+              this.value += (this.mouseYInit - mouseY) * this.step;
+              this.value = constrain(this.value, min, max);
+              this.mouseYInit = mouseY;
+            }
+          } else {
+            this.active = false;
+            Knob.active = false;
+          }
+          
+          this.percent =  (this.value - this.min) / (this.max - this.min);
+          this.angle = map(this.value, this.min, this.max, radians(-130), radians(130));
+          pushMatrix();
+            translate(this.x, this.y);
+            rotate(this.angle);
+            ellipse(0, 0, 2*this.radius, 2*this.radius);
+            line(0, 0, 0, -this.radius);
+          popMatrix();
+          /*
+          text(this.label, this.x - this.radius -5, this.y - this.radius - 5);
+          text(this.value, this.x+this.radius+5, this.y);
+          text(round(this.percent * 100) + "%", this.x+this.radius+5, this.y+20);
+          */
+        }
+        boolean isOver() {
+          if (mouseX > this.x - this.radius && 
+              mouseX < this.x + this.radius &&
+              mouseY > this.y - this.radius &&
+              mouseY < this.y + this.radius) {
+              return true;
+          }
+          return false;
+        }
+      }
+    </script>
+    
+    <h1>Audio Filter</h1>
+    <p>Applies a Low pass filter to an audio stream. Remember to <b>Mute</b> the audio to hear the pure filtered sound.</p>
+    <p>The low pass filter acts as a gate, only letting frequencies below the cut off value through.</p> 
+    <audio id='input' tabindex="0" src="audio/megaman.ogg" controls="true" onloadedmetadata="loadedMetaData(event);" style="width: 512px;"></audio><br>
+    <div><canvas id="signal" width="512px" height="200px"></canvas></div>
 
-	<input class="btn btn-primary btn-block form-control" type="submit" id="remove" value="Remove Leaderboard" ng-click="showme=false"ng-show = "showme"/>
-        <input class="btn btn-primary btn-block form-control" type="submit" id="key" value="Show Leaderboard" ng-click="showme=true" ng-hide = "showme"/>
-</div>
-
-
-  
-  
-
-   	 
- 
-  <div class="container" ng-controller="ExampleController" ng-show="showme">
-  <table class="table table-hover">
-    <tr>
-      <th>Name</th>
-      <th>Visits</th>
-      <th>Last Visited (Hours)</th>
-    </tr>
-    <tr ng-repeat="friend in friends | orderBy:'-visits' ">
-      <td>{{friend.name}}</td>
-      <td>{{friend.visits}}</td>
-      <td>{{now - friend.date }} </td>
-    </tr>
-  </table>
-</div>
-</div>
-
-
-
-
-
-
-
-</body>
+    <p>The <b>F</b> knob controls the cut off frequency, between 0 and 22050 Hz.</p>
+    <p>The <b>Q</b> knob controls the resonance drive.</p>
+    <p>A low frequency cutoff and strong resonance can give an acidy or dampened underwater effect.</p>
+    <p>(Be careful! Adjust your volume! Certain knob combinations can give off loud undesired schreeching noises!)</p>
+    <p>Music: Delv-X: Megaman theme (cover)</p>
+  </body>
 </html>
